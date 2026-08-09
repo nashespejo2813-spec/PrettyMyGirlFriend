@@ -1,0 +1,344 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        radial-gradient(circle at top left, #ff4f9a55, transparent 35%),
+        radial-gradient(circle at bottom right, #ff005555, transparent 35%),
+        linear-gradient(135deg, #16001f, #3d003f, #710044);
+
+    position: relative;
+}
+
+/* Background Glow */
+
+body::before {
+    content: "";
+
+    position: absolute;
+
+    width: 350px;
+    height: 350px;
+
+    background: #ff1493;
+
+    border-radius: 50%;
+
+    filter: blur(120px);
+
+    opacity: 0.25;
+
+    top: -150px;
+    left: -100px;
+}
+
+body::after {
+    content: "";
+
+    position: absolute;
+
+    width: 350px;
+    height: 350px;
+
+    background: #ff0055;
+
+    border-radius: 50%;
+
+    filter: blur(120px);
+
+    opacity: 0.25;
+
+    bottom: -150px;
+    right: -100px;
+}
+
+/* Floating Hearts */
+
+.hearts {
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+}
+
+.heart {
+    position: absolute;
+
+    bottom: -60px;
+
+    color: #ff6ba8;
+
+    filter: drop-shadow(0 0 10px #ff3180);
+
+    animation: floatHeart linear forwards;
+}
+
+@keyframes floatHeart {
+
+    0% {
+        transform:
+            translateY(0)
+            scale(0.5)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translateY(-110vh)
+            scale(1.4)
+            rotate(360deg);
+
+        opacity: 0;
+    }
+}
+
+/* Container */
+
+.container {
+    position: relative;
+
+    z-index: 10;
+
+    width: 90%;
+
+    max-width: 520px;
+}
+
+/* Card */
+
+.card {
+
+    text-align: center;
+
+    padding: 45px 30px;
+
+    border-radius: 30px;
+
+    background: rgba(255, 255, 255, 0.10);
+
+    border: 1px solid rgba(255, 255, 255, 0.20);
+
+    backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.5),
+        inset 0 0 30px rgba(255, 255, 255, 0.05);
+
+    animation: cardAppear 1s ease;
+}
+
+@keyframes cardAppear {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(50px)
+            scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+/* Big Heart */
+
+.big-heart {
+
+    font-size: 80px;
+
+    animation: heartbeat 1.2s infinite;
+
+    filter:
+        drop-shadow(0 0 15px #ff2677);
+}
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    15% {
+        transform: scale(1.15);
+    }
+
+    30% {
+        transform: scale(1);
+    }
+
+    45% {
+        transform: scale(1.1);
+    }
+}
+
+/* Title */
+
+h1 {
+
+    margin-top: 15px;
+
+    color: white;
+
+    font-size: 40px;
+
+    text-shadow:
+        0 0 20px #ff2677;
+}
+
+.subtitle {
+
+    margin-top: 10px;
+
+    color: #ffd5e7;
+
+    font-size: 17px;
+
+    line-height: 1.6;
+}
+
+h2 {
+
+    margin-top: 20px;
+
+    color: #ff91bb;
+
+    font-size: 25px;
+
+    text-shadow:
+        0 0 15px #ff2677;
+}
+
+/* Button */
+
+button {
+
+    margin-top: 28px;
+
+    padding: 15px 30px;
+
+    border: none;
+
+    border-radius: 50px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff2975,
+            #ff0055
+        );
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 25px #ff005577;
+
+    transition: 0.3s;
+}
+
+button:hover {
+
+    transform: scale(1.08);
+
+    box-shadow:
+        0 0 40px #ff0055cc;
+}
+
+button:active {
+
+    transform: scale(0.95);
+}
+
+/* Message */
+
+.message {
+
+    max-height: 0;
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    transition:
+        max-height 0.8s ease,
+        opacity 0.8s ease,
+        margin 0.8s ease;
+}
+
+.message.show {
+
+    max-height: 300px;
+
+    opacity: 1;
+
+    margin-top: 25px;
+}
+
+.message p {
+
+    color: white;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+}
+
+.signature {
+
+    margin-top: 15px;
+
+    color: #ff9fc4 !important;
+
+    font-weight: bold;
+}
+
+/* Mobile */
+
+@media (max-width: 500px) {
+
+    .card {
+        padding: 35px 20px;
+    }
+
+    .big-heart {
+        font-size: 65px;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+}
